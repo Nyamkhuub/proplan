@@ -60,12 +60,10 @@ public class User {
         connection.setRequestMethod(method);
         connection.setRequestProperty("Content-Type", "application/json");
 
-        System.out.println(body.toString());
 
         OutputStream out = connection.getOutputStream();
         out.write(body.toString().getBytes());
         out.flush();
-        System.out.println(connection.getResponseCode());
         if(connection.getResponseCode()!= HttpURLConnection.HTTP_OK) {
             return null;
         }

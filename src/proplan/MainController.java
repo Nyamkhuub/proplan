@@ -123,8 +123,7 @@ public class MainController {
                     ((VBox)draggingButton.getParent()).getChildren().remove(draggingButton);
                     try {
                         int id = ((VBox)pane.getContent()).getChildren().size() + 1;
-
-                        draggingButton.changeSection(LoginPage.user, draggingButton.parent, true, 0);
+                        draggingButton.changeSection(LoginPage.user, draggingButton.parent.replaceAll(" ", ""), true, 0);
                         draggingButton.changeSection(LoginPage.user, pane.getText().replaceAll(" ", ""), false, id);
                     } catch (Exception e) {
                         e.printStackTrace();

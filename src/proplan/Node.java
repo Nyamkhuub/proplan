@@ -36,7 +36,6 @@ public class Node extends VBox {
         this.body = new Text(data.get("body").getAsString());
         this.data = data;
         this.parent = parent;
-        System.out.println("My parent ---- "+ parent);
         this.title.setDisable(true);
         this.getChildren().addAll(this.title, this.body);
         this.controller = controller;
