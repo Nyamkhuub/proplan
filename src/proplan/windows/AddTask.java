@@ -2,11 +2,13 @@ package proplan.windows;
 
 import com.google.gson.JsonObject;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
@@ -24,22 +26,31 @@ public class AddTask extends VBox {
 
     public boolean isEdited = false;
 
-    AddTask(String title, String body, int id, Stage ownStage, User activeUser, String section) {
+    public AddTask(String title, String body, int id, Stage ownStage, User activeUser, String section) {
+        this.setSpacing(15);
+        this.setPadding(new Insets(15));
         if(!title.isEmpty() && !body.isEmpty()) {
             isUpdate = true;
         }
-        this.ownSection = section;
-        this.title = new TextField(title);
-        this.body = new TextArea(body);
-        submit = new Button("Add");
-        close = new Button("Close");
         this.ownStage = ownStage;
         this.activeUser = activeUser;
         this.id = id;
+        this.ownSection = section;
+        this.title = new TextField(title);
+        this.body = new TextArea(body);
+        HBox buttons = new HBox(15);
+        submit = new Button("Add");
+        close = new Button("Close");
         this.config();
+        buttons.getChildren().addAll(submit, close);
+        this.getChildren().addAll(this.title, this.body, buttons);
     }
 
     private void config() {
+        close.setPrefWidth(70);
+        close.setPrefHeight(35);
+        submit.setPrefWidth(70);
+        submit.setPrefHeight(35);
         this.submit.setDisable(true);
         this.title.textProperty().addListener(((observable, oldValue, newValue) -> {
             if(!oldValue.equals(newValue)) {
@@ -79,6 +90,8 @@ public class AddTask extends VBox {
             e.printStackTrace();
             this.isEdited = false;
             Notifications.create().text("Sorry system couldn't create new Task, please try again").position(Pos.TOP_RIGHT).showError();
+        } finally {
+            this.ownStage.close();
         }
     }
 

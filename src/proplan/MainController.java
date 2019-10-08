@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -14,6 +15,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
+import proplan.windows.AddTask;
+import proplan.windows.Stages.TaskStage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -138,7 +141,19 @@ public class MainController {
     private void newTask() {
         Label label = new Label("Add task");
         label.setOnMouseClicked(event -> {
-            System.out.println("testing...");
+            VBox element = (VBox)MainController.this.first.getContent();
+            int elements = element.getChildren().size()+1;
+            TaskStage newTaskStage = new TaskStage(false);
+            AddTask addTask = new AddTask("", "", elements, newTaskStage, LoginPage.user, "todo");
+            newTaskStage.setScene(new Scene(addTask, newTaskStage.SIZE, newTaskStage.SIZE));
+            newTaskStage.setX(event.getX());
+            newTaskStage.setY(event.getY());
+            newTaskStage.show();
+            if(addTask.isEdited) {
+                JsonObject data = addTask.getData();
+                Node node = new Node(data, this, "todo");
+                element.getChildren().add(node);
+            }
         });
         this.addTask.setGraphic(label);
     }
