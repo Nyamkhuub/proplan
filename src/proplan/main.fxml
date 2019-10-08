@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proplan.MainController">
+   <children>
+      <HBox prefHeight="14.0" prefWidth="1200.0">
+         <children>
+            <MenuBar prefHeight="29.0" prefWidth="1200.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="My account">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Info" />
+                        <MenuItem fx:id="changePassword" mnemonicParsing="false" text="change password" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="addTask" mnemonicParsing="false" />
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Contact" />
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </HBox>
+      <HBox prefHeight="600" prefWidth="1200">
+         <children>
+            <TitledPane fx:id="first" prefHeight="428.0" prefWidth="198.0" />
+            <TitledPane fx:id="second" prefHeight="428.0" prefWidth="198.0" />
+            <TitledPane fx:id="third" prefHeight="400.0" prefWidth="204.0" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
